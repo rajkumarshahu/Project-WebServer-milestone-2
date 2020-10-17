@@ -1,3 +1,5 @@
+const Patient = require('../models/Patient');
+
 //@desc        Get all patients
 //@route       GET /patients
 //@access      Public
