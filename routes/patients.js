@@ -18,6 +18,6 @@ router
     .route('/:id')
     .get(getPatient)
     .put(updatePatient)
-    .delete(deletePatient)
+    .delete(deletePatient);
 
 module.exports = router;
