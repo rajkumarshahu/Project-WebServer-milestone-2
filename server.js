@@ -12,9 +12,10 @@ connectDB();
 // Route files
 const patients = require('./routes/patients');
 
-
-
 const app = express();
+
+// Body parser
+app.use(express.json());
 
 // @desc    Logs request to console
 const logger = (req, res, next) => {
