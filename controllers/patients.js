@@ -6,9 +6,9 @@ const Patient = require('../models/Patient');
 exports.getPatients = async (req, res, next) => {
     try {
         const patients = await Patient.find();
-        res.status(200).json({ success:true, data: patients});
+        res.status(200).json({ success:true, patientCount: patients.length, data: patients });
     } catch (err) {
-        res.status(400).json({success: false});
+        res.status(400).json({ success: false });
     }
 
 }
@@ -24,7 +24,7 @@ exports.getPatient = async (req, res, next) => {
         }
         res.status(200).json({ success:true, data: patient});
     } catch (err) {
-        res.status(400).json({success: false});
+        res.status(400).json({ success: false });
     }
 }
 
@@ -32,7 +32,6 @@ exports.getPatient = async (req, res, next) => {
 //@route       POST /patients
 //@access      Private
 exports.createpatient = async (req, res, next) => {
-
     try {
         const patient = await Patient.create(req.body);
         res.status(201).json({
@@ -48,13 +47,33 @@ exports.createpatient = async (req, res, next) => {
 //@desc        Update patient
 //@route       PUT /patients/:id
 //@access      Private
-exports.updatePatient = (req, res, next) => {
-    res.status(200).json({ success:true, message: `Update a patient ${req.params.id}`});
+exports.updatePatient = async (req, res, next) => {
+    try {
+        const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        });
+        if (!patient){
+            return res.status(400).json({ success: false });
+        }
+        res.status(200).json({ success:true, data: patient });
+    } catch (err) {
+        res.status(400).json({ success: false });
+    }
+
 }
 
 //@desc        Delete patient
 //@route       DELETE /patients/:id
 //@access      Private
-exports.deletePatient = (req, res, next) => {
-    res.status(200).json({ success:true, message: `Delete a patient ${req.params.id}`});
+exports.deletePatient = async (req, res, next) => {
+    try {
+        const patient = await Patient.findByIdAndDelete(req.params.id);
+        if (!patient){
+            return res.status(400).json({ success: false });
+        }
+        res.status(200).json({ success:true, data: {} });
+    } catch (err) {
+        res.status(400).json({ success: false });
+    }
 }
