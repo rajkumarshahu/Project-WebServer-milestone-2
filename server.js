@@ -11,6 +11,7 @@ connectDB();
 
 // Route files
 const patients = require('./routes/patients');
+const records = require('./routes/records');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(logger);
 
 // Mount routers
 app.use('/patients', patients);
+app.use('/records', records);
 
 const PORT = process.env.PORT || 5000;
 

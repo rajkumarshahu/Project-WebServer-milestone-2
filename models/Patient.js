@@ -46,6 +46,26 @@ const PatientSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+},
+{
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+}
+);
+
+// Delete records when a patient is deleted
+PatientSchema.pre('remove', async function (next) {
+	console.log(`Patient records being removed from patient with id: ${this._id}`);
+	await this.model('Record').deleteMany({ patient: this._id });
+	next();
+});
+
+// Reverse populate with virtualsß
+PatientSchema.virtual('records', {
+	ref: 'Record',
+	localField: '_id',
+	foreignField: 'patient',
+	justOne: false,
 });
 
 module.exports = mongoose.model('Patient', PatientSchema);
