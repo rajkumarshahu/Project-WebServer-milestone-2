@@ -15,6 +15,13 @@
  npm run dev (to start development server)
  ```
 
+## Seeding Data in Database
+
+```
+node seeder -d (To delete all data from DB)
+node seeder -i (To import data into DB)
+```
+
 ## Technology Used
 
 - nodejs
