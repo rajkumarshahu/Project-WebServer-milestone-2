@@ -10,16 +10,6 @@
         "patient": "5d725a037b292f5f8ceff707"
     },
     {
-        "_id": "5d713995b721c3bb38c1f520",
-        "bodyTemperature": 36.5,
-        "pulseRate": 77,
-        "respirationRate": 25,
-		"systolicBP": 98,
-        "diastolicBP": 138,
-        "o2Sat": 99,
-        "patient": "5d725a037b292f5f8cefff89"
-    },
-    {
         "_id": "5d713995b721c3bb38b2f345",
         "bodyTemperature": 38,
         "pulseRate": 79,
