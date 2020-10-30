@@ -8,6 +8,7 @@
 
 ## Running Server
 
+- Rename `config/config copy.env` to `config/config.env`
 - Configure `config/config.env` with your `MONGO_URI`
 
 ```cd Project-WebServer-milestone-2
